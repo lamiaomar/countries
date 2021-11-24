@@ -2,6 +2,7 @@ package com.example.countries.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.countries.network.CountryApi
@@ -23,11 +24,10 @@ class CountryViewModel : ViewModel() {
 
     private fun getCountryPhotos() {
 
-
         viewModelScope.launch {
             try {
                 val listResult = CountryApi.retrofitService.getPhotos()
-                _status.value = "Success: ${listResult} Country photos retrieved"
+                _status.value = "Success: ${listResult.data.size} Country photos retrieved"
 
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
