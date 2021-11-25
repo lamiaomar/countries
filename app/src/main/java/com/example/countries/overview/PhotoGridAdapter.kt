@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countries.databinding.GridViewItemBinding
+import com.example.countries.network.CountryPhoto
 import com.example.countries.network.Phototresponse
 
 
-class PhotoGridAdapter : ListAdapter<Phototresponse,
+class PhotoGridAdapter : ListAdapter<CountryPhoto,
         PhotoGridAdapter.CountrysPhotoViewHolder>(DiffCallback) {
 
 
@@ -17,19 +18,19 @@ class PhotoGridAdapter : ListAdapter<Phototresponse,
                               GridViewItemBinding
     ):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(MarsPhoto: Phototresponse) {
+        fun bind(MarsPhoto: CountryPhoto) {
             binding.photo = MarsPhoto
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Phototresponse>() {
-        override fun areItemsTheSame(oldItem: Phototresponse, newItem: Phototresponse): Boolean {
-            return newItem.msg == oldItem.msg
+    companion object DiffCallback : DiffUtil.ItemCallback<CountryPhoto>() {
+        override fun areItemsTheSame(oldItem: CountryPhoto, newItem: CountryPhoto): Boolean {
+            return newItem.name == oldItem.name
         }
 
-        override fun areContentsTheSame(oldItem: Phototresponse, newItem: Phototresponse): Boolean {
-            return oldItem.msg == newItem.msg
+        override fun areContentsTheSame(oldItem: CountryPhoto, newItem: CountryPhoto): Boolean {
+            return oldItem.name == newItem.name
         }
     }
 

@@ -4,16 +4,15 @@ import androidx.lifecycle.Transformations.map
 import com.squareup.moshi.Json
 import java.util.*
 
+
 data class CountryPhoto(
-    val name : String,
-     val flag : String
+    @Json (name = "name") val name : String,
+    @Json (name = "flag") val flag : String
 )
 
 data class Phototresponse(
     val error : Boolean ,
     val msg : String,
+    @Json (name = "data")
     val data : List<CountryPhoto>
 )
-
-
-

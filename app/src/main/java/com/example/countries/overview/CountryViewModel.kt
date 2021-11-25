@@ -32,7 +32,9 @@ class CountryViewModel : ViewModel() {
             try {
                 _status.value = CountryApi.retrofitService.getPhotos().data
 
-                _name.value = _status.value.toString()
+                _name.value = _status.value!![0].name
+                _flag.value = _status.value!![0].flag
+
 
             } catch (e: Exception) {
                 _name.value = "Failure: ${e.message}"

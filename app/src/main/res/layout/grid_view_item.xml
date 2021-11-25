@@ -6,16 +6,33 @@
     <data>
         <variable
             name="photo"
-            type="com.example.countries.network.Phototresponse" />
+            type="com.example.countries.network.CountryPhoto" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/mars_image"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="170dp"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:padding="2dp"
-        app:imageUrl="@{viewModel.photos.flag}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:imageUrl="@{photo.flag}"
         tools:src="@tools:sample/backgrounds/scenic"/>
+
+        <TextView
+            android:id="@+id/taxtName"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mars_image"
+            android:text="@{photo.name}"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
