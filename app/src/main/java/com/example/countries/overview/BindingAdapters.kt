@@ -34,24 +34,7 @@ fun bindRecyclerView(recyclerView: RecyclerView,
 //        }
 //    }
 //}
-//@BindingAdapter("imageUrl")
-//fun AppCompatImageView.loadSvg(url: String) {
-//    url?.let {
-//        ImageLoader.Builder(this.context)
-//            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
-//            .build()
-//
-//        val request = ImageRequest.Builder(this.context)
-//            .crossfade(true)
-//            .crossfade(500)
-//            .data(url)
-//            .target(this)
-//            .build()
-//
-////        imageLoader.enqueue(request)
-//    }
-//
-//}
+
 
 @BindingAdapter("imageUrl")
 fun ImageView.loadSvg(imageUri: String?) {
@@ -62,20 +45,9 @@ fun ImageView.loadSvg(imageUri: String?) {
 
         this.load(uri = imageUri, imageLoader = imageLoader) {
             crossfade(true)
+            crossfade(500)
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)    }
     }
 
 }
-
-
-//fun ImageView.loadImage(imageUri: String, placeholder: Int? = null) {
-//    val imageLoader = ImageLoader.Builder(this.context)
-//        .componentRegistry { add(SvgDecoder(this@loadImage.context)) }
-//        .build()
-//
-//    load(uri = imageUri, imageLoader = imageLoader) {
-//        crossfade(true)
-//        placeholder(placeholder ?: R.drawable.loading_animation)
-//    }
-//}
