@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.countries.databinding.FragmentCountryBinding
+import com.example.countries.network.Phototresponse
 
 
 class CountryFragment : Fragment() {
@@ -22,8 +23,11 @@ class CountryFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-        // Giving the binding access to the OverviewViewModel
+        // Giving the binding access to the CountryViewModel
         binding.viewModel = viewModel
+
+        binding.photosGrid.adapter = PhotoGridAdapter()
+
 
         return binding.root
     }
