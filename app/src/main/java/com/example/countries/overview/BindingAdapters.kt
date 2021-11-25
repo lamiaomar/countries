@@ -2,10 +2,14 @@ package com.example.countries.overview
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
+import coil.decode.SvgDecoder
 import coil.load
+import coil.request.ImageRequest
 import com.example.countries.R
 import com.example.countries.network.CountryPhoto
 import java.util.*
@@ -19,22 +23,59 @@ fun bindRecyclerView(recyclerView: RecyclerView,
 
 }
 
+//@BindingAdapter("imageUrl")
+//fun bindImage(imgView: ImageView, imgUrl: String?) {
+//    imgUrl?.let {
+//        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+//        imgView.load(imgUri)
+//        {
+//            placeholder(R.drawable.loading_animation)
+//            error(R.drawable.ic_broken_image)
+//        }
+//    }
+//}
+//@BindingAdapter("imageUrl")
+//fun AppCompatImageView.loadSvg(url: String) {
+//    url?.let {
+//        ImageLoader.Builder(this.context)
+//            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
+//            .build()
+//
+//        val request = ImageRequest.Builder(this.context)
+//            .crossfade(true)
+//            .crossfade(500)
+//            .data(url)
+//            .target(this)
+//            .build()
+//
+////        imageLoader.enqueue(request)
+//    }
+//
+//}
+
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imgView.load(imgUri)
-        {
+fun ImageView.loadSvg(imageUri: String?) {
+    imageUri?.let{
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
+            .build()
+
+        this.load(uri = imageUri, imageLoader = imageLoader) {
+            crossfade(true)
             placeholder(R.drawable.loading_animation)
-            error(R.drawable.ic_broken_image)
-        }
+            error(R.drawable.ic_broken_image)    }
     }
+
 }
 
-//@BindingAdapter("name")
-//fun binText(textView: TextView , name : String?){
-//    name?.let {
+
+//fun ImageView.loadImage(imageUri: String, placeholder: Int? = null) {
+//    val imageLoader = ImageLoader.Builder(this.context)
+//        .componentRegistry { add(SvgDecoder(this@loadImage.context)) }
+//        .build()
 //
-//
+//    load(uri = imageUri, imageLoader = imageLoader) {
+//        crossfade(true)
+//        placeholder(placeholder ?: R.drawable.loading_animation)
 //    }
 //}

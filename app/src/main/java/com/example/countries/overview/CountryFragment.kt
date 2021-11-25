@@ -28,7 +28,6 @@ class CountryFragment : Fragment() {
 
         binding.photosGrid.adapter = PhotoGridAdapter()
 
-
         return binding.root
     }
 }
