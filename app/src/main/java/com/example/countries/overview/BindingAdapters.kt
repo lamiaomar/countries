@@ -43,7 +43,7 @@ fun ImageView.loadSvg(imageUri: String?) {
             .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
             .build()
 
-        this.load(uri = imageUri, imageLoader = imageLoader) {
+        this.load(imageUri, imageLoader) {
             crossfade(true)
             crossfade(500)
             placeholder(R.drawable.loading_animation)
